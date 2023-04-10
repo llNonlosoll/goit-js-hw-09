@@ -28,6 +28,7 @@ let timeInterval = null;
 refs.btnStart.setAttribute('disabled', true);
 
 // Створюємо змінні для зберігання часу
+let chosenDate = null;
 let actualDate = null;
 let timeToFinish = null;
 
@@ -38,8 +39,9 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
+    chosenDate = selectedDates[0];
     actualDate = new Date();
-    timeToFinish = selectedDates[0] - actualDate;
+    timeToFinish = chosenDate - actualDate;
 
     if (timeToFinish > 0) {
       Notify.success('You can start countdown');
@@ -56,9 +58,17 @@ flatpickr(refs.input, options);
 
 // Функція для виклику на кнопці "Start"
 function onBtnClick() {
-  startCountdown();
-  refs.btnStart.setAttribute('disabled', true);
-  refs.input.setAttribute('disabled', true);
+  actualDate = new Date();
+  timeToFinish = chosenDate - actualDate;
+  if (timeToFinish > 0) {
+    Notify.success('We are starting countdown');
+    startCountdown();
+    refs.btnStart.setAttribute('disabled', true);
+    refs.input.setAttribute('disabled', true);
+  } else {
+    Notify.failure('Please choose a date in the future');
+    refs.btnStart.setAttribute('disabled', true);
+  }
 }
 
 // Функції старт та стоп зворотнього відліку
