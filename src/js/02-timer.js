@@ -18,13 +18,16 @@ const refs = {
   seconds: document.querySelector('[data-seconds]'),
 };
 
+// Додаємо слухачів подій
+refs.btnStart.addEventListener('click', onBtnClick);
+
 // Створюємо змінну для зберігання часу інтервалу та самого інтервалу
-// та робимо кнопку неактивною за замовченням
+// та робимо кнопку "Start" неактивною за замовченням
 const INTERVAL = 1000;
 let timeInterval = null;
 refs.btnStart.setAttribute('disabled', true);
 
-// Створюємо зміння для зберігання часу
+// Створюємо змінні для зберігання часу
 let actualDate = new Date();
 let chosenDate = null;
 let timeToFinish = null;
@@ -49,11 +52,10 @@ const options = {
   },
 };
 
+// Ініціалізуємо flatpickr
 flatpickr(refs.input, options);
 
-// Додаємо слухачів подій
-refs.btnStart.addEventListener('click', onBtnClick);
-
+// Функція для виклику на кнопці "Start"
 function onBtnClick() {
   interfaceUpdate(addLeadingZero(convertMs(timeToFinish)));
   startCountdown();
