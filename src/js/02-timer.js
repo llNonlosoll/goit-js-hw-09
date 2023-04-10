@@ -28,8 +28,6 @@ let timeInterval = null;
 refs.btnStart.setAttribute('disabled', true);
 
 // Створюємо змінні для зберігання часу
-let actualDate = new Date();
-let chosenDate = null;
 let timeToFinish = null;
 
 // Опції для flatpickr
@@ -39,7 +37,9 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
+    let chosenDate = null;
     chosenDate = selectedDates[0];
+    let actualDate = new Date();
     timeToFinish = chosenDate - actualDate;
 
     if (timeToFinish > 0) {
@@ -71,8 +71,8 @@ function startCountdown() {
     interfaceUpdate(addLeadingZero(convertMs(timeToFinish)));
 
     if (timeToFinish < INTERVAL) {
-      Notify.success('TIME IS OVER');
       stopCountdown();
+      Notify.success('TIME IS OVER');
       refs.btnStart.removeAttribute('disabled');
       refs.input.removeAttribute('disabled');
     }
