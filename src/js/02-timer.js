@@ -57,7 +57,6 @@ flatpickr(refs.input, options);
 
 // Функція для виклику на кнопці "Start"
 function onBtnClick() {
-  interfaceUpdate(addLeadingZero(convertMs(timeToFinish)));
   startCountdown();
   refs.btnStart.setAttribute('disabled', true);
   refs.input.setAttribute('disabled', true);
@@ -65,6 +64,7 @@ function onBtnClick() {
 
 // Функції старт та стоп зворотнього відліку
 function startCountdown() {
+  interfaceUpdate(addLeadingZero(convertMs(timeToFinish)));
   timeInterval = setInterval(() => {
     timeToFinish -= INTERVAL;
 
