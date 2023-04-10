@@ -5,7 +5,7 @@ const refs = {
   stop: document.querySelector('[data-stop]'),
 };
 
-// Створюємо перемінну для зберігання часу інтервалу та самого інтервалу
+// Створюємо змінну для зберігання часу інтервалу та самого інтервалу
 const INTERVAL = 1000;
 let colorInterval = null;
 
