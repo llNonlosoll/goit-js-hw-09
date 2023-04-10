@@ -1,6 +1,6 @@
-//Виносимо функції в окремий файл для очищення коду
+//Виносимо допоміжні функції в окремий файл для очищення коду
 
-// Функція для конвертації часу
+// Функція для конвертації часу - task2
 function convertMs(ms) {
   // Number of milliseconds per unit of time
   const second = 1000;
@@ -20,7 +20,7 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
-// Функції для форматування часу
+// Функції для форматування часу - task2
 function formatTime(time) {
   return String(time).padStart(2, '0');
 }
@@ -34,4 +34,19 @@ function addLeadingZero({ days, hours, minutes, seconds }) {
   return { formatDays, formatHours, formatMinutes, formatSeconds };
 }
 
-export { convertMs, formatTime, addLeadingZero };
+// Функція створення промісу - task3
+function createPromise(position, delay) {
+  const shouldResolve = Math.random() > 0.3;
+
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (shouldResolve) {
+        resolve({ position, delay });
+      } else {
+        reject({ position, delay });
+      }
+    }, delay);
+  });
+}
+
+export { convertMs, formatTime, addLeadingZero, createPromise };
